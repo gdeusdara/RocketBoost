@@ -29,15 +29,15 @@ public class FlyRocket : MonoBehaviour
     }
 
     void BoostRocket() {
-      if (!Input.GetKey(KeyCode.Space)) return;
+      if (!Input.GetKey(KeyCode.Space)) {
+        rocket.freezeRotation = false;
+        return;
+      }
+
+      rocket.freezeRotation = true;
 
       float myForce = force * Time.deltaTime;
-
-      float zForce = Mathf.Sin(transform.rotation.x) * myForce;
-      float yForce = Mathf.Sin(90 - transform.rotation.x) * myForce;
-
-      Vector3 forceApplied = new Vector3(0, yForce, zForce);
-      rocket.AddForce(forceApplied, ForceMode.Force);
+      rocket.AddRelativeForce(Vector3.up * myForce, ForceMode.Force);
     }
 
     void FixedUpdate()
