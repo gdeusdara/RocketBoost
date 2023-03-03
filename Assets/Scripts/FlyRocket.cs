@@ -6,6 +6,7 @@ public class FlyRocket : MonoBehaviour
 {
     public float force = 1000f;
     Rigidbody rocket;
+    AudioSource rocketSound;
 
     public KeyCode[] goLeftKeys = { KeyCode.A, KeyCode.LeftArrow };
     public KeyCode[] goRightKeys = { KeyCode.D, KeyCode.RightArrow };
@@ -16,6 +17,8 @@ public class FlyRocket : MonoBehaviour
     void Start()
     {
       rocket = GetComponent<Rigidbody>();
+      rocketSound = GetComponent<AudioSource>();
+      rocketSound.loop = true;
     }
 
     void RotateRocket(KeyCode[] keys, float direction)
@@ -30,6 +33,7 @@ public class FlyRocket : MonoBehaviour
 
     void BoostRocket() {
       if (!Input.GetKey(KeyCode.Space)) {
+        rocketSound.Stop();
         rocket.freezeRotation = false;
         return;
       }
@@ -38,6 +42,9 @@ public class FlyRocket : MonoBehaviour
 
       float myForce = force * Time.deltaTime;
       rocket.AddRelativeForce(Vector3.up * myForce, ForceMode.Force);
+      if (!rocketSound.isPlaying) {
+        rocketSound.Play();
+      }
     }
 
     void FixedUpdate()
