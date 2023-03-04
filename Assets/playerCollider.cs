@@ -9,7 +9,8 @@ public class playerCollider : MonoBehaviour
 
     public AudioClip crashSound;
     public AudioClip winSound;
-    public float timerToNextLevel = 2;
+    public float timerToNextLevel = 2f;
+    public bool won = false;
 
     void Start()
     {
@@ -36,11 +37,15 @@ public class playerCollider : MonoBehaviour
 
     void onFinish() {
       if (!script.enabled) return;
+  
+      script.enabled = false;
+      won = true;
       DisableMoviments();
 
+      audioSource.Stop();
       audioSource.PlayOneShot(winSound);
 
-      Invoke("NextScene", timerToNextLevel);
+      Invoke("NextScene", 1f);
     }
 
     void Restart() {
@@ -63,7 +68,7 @@ public class playerCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!script.enabled && Input.anyKeyDown) {
+        if (!script.enabled && !won && Input.anyKeyDown) {
           Restart();
         }
     }
