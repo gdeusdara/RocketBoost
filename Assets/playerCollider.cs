@@ -26,6 +26,7 @@ public class playerCollider : MonoBehaviour
     void CrashRocket() {
       DisableMoviments();
 
+      audioSource.Stop();
       audioSource.PlayOneShot(crashSound);
     }
 
@@ -34,10 +35,16 @@ public class playerCollider : MonoBehaviour
     }
 
     void onFinish() {
+      if (!script.enabled) return;
       DisableMoviments();
+
       audioSource.PlayOneShot(winSound);
 
       Invoke("NextScene", timerToNextLevel);
+    }
+
+    void Restart() {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -56,6 +63,8 @@ public class playerCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!script.enabled && Input.anyKeyDown) {
+          Restart();
+        }
     }
 }
