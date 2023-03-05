@@ -9,6 +9,9 @@ public class playerCollider : MonoBehaviour
 
     public AudioClip crashSound;
     public AudioClip winSound;
+
+    public ParticleSystem crashParticles;
+    public ParticleSystem successParticles;
     public float timerToNextLevel = 2f;
     public bool won = false;
 
@@ -19,8 +22,8 @@ public class playerCollider : MonoBehaviour
     }
 
     void DisableMoviments() {
-      if (script.enabled) {
-        script.enabled = false;
+      if (script.flightEnabled) {
+        script.flightEnabled = false;
       }
     }
 
@@ -29,6 +32,7 @@ public class playerCollider : MonoBehaviour
 
       audioSource.Stop();
       audioSource.PlayOneShot(crashSound);
+      crashParticles.Play();
     }
 
     void NextScene() {
@@ -36,16 +40,17 @@ public class playerCollider : MonoBehaviour
     }
 
     void onFinish() {
-      if (!script.enabled) return;
+      if (!script.flightEnabled) return;
   
-      script.enabled = false;
+      script.flightEnabled = false;
       won = true;
       DisableMoviments();
 
       audioSource.Stop();
       audioSource.PlayOneShot(winSound);
+      successParticles.Play();
 
-      Invoke("NextScene", 1f);
+      Invoke("NextScene", timerToNextLevel);
     }
 
     void Restart() {
@@ -68,7 +73,7 @@ public class playerCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!script.enabled && !won && Input.anyKeyDown) {
+        if (!script.flightEnabled && !won && Input.anyKeyDown) {
           Restart();
         }
     }

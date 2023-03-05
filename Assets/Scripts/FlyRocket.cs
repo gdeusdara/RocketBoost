@@ -8,6 +8,12 @@ public class FlyRocket : MonoBehaviour
     Rigidbody rocket;
     AudioSource rocketSound;
 
+    public ParticleSystem mainBoosterParticles;
+    public ParticleSystem leftBoosterParticles;
+    public ParticleSystem rightBoosterParticles;
+
+    public bool flightEnabled = true;
+
     public KeyCode[] goLeftKeys = { KeyCode.A, KeyCode.LeftArrow };
     public KeyCode[] goRightKeys = { KeyCode.D, KeyCode.RightArrow };
 
@@ -21,36 +27,43 @@ public class FlyRocket : MonoBehaviour
       rocketSound.loop = true;
     }
 
-    void RotateRocket(KeyCode[] keys, float direction)
+    void RotateRocket(KeyCode[] keys, float direction, ParticleSystem particles)
     {
       foreach (KeyCode key in keys)
       {
-        if (Input.GetKey(key)) {
+        if (Input.GetKey(key) && flightEnabled) {
           transform.Rotate(direction, 0, 0);
+          if (!particles.isPlaying) {
+            particles.Play();
+          }
+          break;
+        } else if (particles.isPlaying) {
+          particles.Stop();
         }
       }
     }
 
     void BoostRocket() {
-      if (!Input.GetKey(KeyCode.Space)) {
+      if (!Input.GetKey(KeyCode.Space) || !flightEnabled) {
         rocketSound.Stop();
-        rocket.freezeRotation = false;
+        mainBoosterParticles.Stop();
         return;
       }
-
-      rocket.freezeRotation = true;
 
       float myForce = force * Time.deltaTime;
       rocket.AddRelativeForce(Vector3.up * myForce, ForceMode.Force);
       if (!rocketSound.isPlaying) {
         rocketSound.Play();
       }
+      if (!mainBoosterParticles.isPlaying) {
+        mainBoosterParticles.Play();
+      }
     }
 
     void FixedUpdate()
     {
         BoostRocket();
-        RotateRocket(goLeftKeys, rotationVelocity);
-        RotateRocket(goRightKeys, -rotationVelocity);
+        RotateRocket(goLeftKeys, rotationVelocity, rightBoosterParticles);
+        RotateRocket(goRightKeys, -rotationVelocity, leftBoosterParticles);
     }
 }

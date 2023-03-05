@@ -360,6 +360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crashSound: {fileID: 8300000, guid: 05610c8d208d14151994812883641ce8, type: 3}
   winSound: {fileID: 8300000, guid: 5c08706ab3e9b4485b3f2b52d4d99ea8, type: 3}
+  crashParticles: {fileID: 0}
+  successParticles: {fileID: 0}
   timerToNextLevel: 2
   won: 0
 --- !u!1001 &162911896196275680
@@ -534,6 +536,10 @@ PrefabInstance:
     - target: {fileID: 5983926709890990506, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983926709890990507, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
+      propertyPath: m_Constraints
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
