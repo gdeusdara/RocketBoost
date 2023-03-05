@@ -45,7 +45,9 @@ public class FlyRocket : MonoBehaviour
 
     void BoostRocket() {
       if (!Input.GetKey(KeyCode.Space) || !flightEnabled) {
-        rocketSound.Stop();
+        if (flightEnabled) {
+          rocketSound.Stop();
+        }
         mainBoosterParticles.Stop();
         return;
       }

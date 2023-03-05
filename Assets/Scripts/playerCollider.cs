@@ -15,6 +15,8 @@ public class playerCollider : MonoBehaviour
     public float timerToNextLevel = 2f;
     public bool won = false;
 
+    public bool collisionsEnabled = true;
+
     void Start()
     {
       script = GetComponent<FlyRocket>();
@@ -31,11 +33,11 @@ public class playerCollider : MonoBehaviour
       DisableMoviments();
 
       audioSource.Stop();
-      audioSource.PlayOneShot(crashSound);
+      audioSource.PlayOneShot(crashSound, 1f);
       crashParticles.Play();
     }
 
-    void NextScene() {
+    public void NextScene() {
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -45,9 +47,8 @@ public class playerCollider : MonoBehaviour
       script.flightEnabled = false;
       won = true;
       DisableMoviments();
-
       audioSource.Stop();
-      audioSource.PlayOneShot(winSound);
+      audioSource.PlayOneShot(winSound, 1f);
       successParticles.Play();
 
       Invoke("NextScene", timerToNextLevel);
@@ -58,6 +59,8 @@ public class playerCollider : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
+      if (!collisionsEnabled) return;
+
       switch (other.gameObject.tag) {
         case "finish":
           onFinish();

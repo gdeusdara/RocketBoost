@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &539443695 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3826307527207195533, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
+  m_PrefabInstance: {fileID: 5983926708094457213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +369,11 @@ MonoBehaviour:
   successParticles: {fileID: 0}
   timerToNextLevel: 2
   won: 0
+--- !u!198 &2005926632 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5500143443078420779, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
+  m_PrefabInstance: {fileID: 5983926708094457213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &162911896196275680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +499,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1962349784, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
+      propertyPath: crashParticles
+      value: 
+      objectReference: {fileID: 539443695}
+    - target: {fileID: 1962349784, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
+      propertyPath: successParticles
+      value: 
+      objectReference: {fileID: 2005926632}
     - target: {fileID: 5983926709890990505, guid: 8dfd81c86b97d48db9fb05775d95f0af, type: 3}
       propertyPath: m_Name
       value: Rocket
