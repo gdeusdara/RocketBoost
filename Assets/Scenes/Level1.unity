@@ -1619,15 +1619,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8510540258911948771, guid: e672767b15c4ed34a9a4724f9e87fb0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.2
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 8510540258911948771, guid: e672767b15c4ed34a9a4724f9e87fb0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.2
+      value: 15.35
       objectReference: {fileID: 0}
     - target: {fileID: 8510540258911948771, guid: e672767b15c4ed34a9a4724f9e87fb0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54.1
+      value: -55.07
       objectReference: {fileID: 0}
     - target: {fileID: 8510540258911948771, guid: e672767b15c4ed34a9a4724f9e87fb0d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1812,11 +1812,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 750560757727526580, guid: 504b8b7b6d11840fb9798e15e15e37de, type: 3}
       propertyPath: m_LookaheadTime
-      value: 0.182
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 750560757727526580, guid: 504b8b7b6d11840fb9798e15e15e37de, type: 3}
       propertyPath: m_LookaheadSmoothing
-      value: 4.9
+      value: 19.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504b8b7b6d11840fb9798e15e15e37de, type: 3}
