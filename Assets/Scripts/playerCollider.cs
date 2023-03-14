@@ -7,6 +7,8 @@ public class playerCollider : MonoBehaviour
     AudioSource audioSource;
     FlyRocket script;
 
+    Rigidbody rd;
+
     public AudioClip crashSound;
     public AudioClip winSound;
 
@@ -21,6 +23,7 @@ public class playerCollider : MonoBehaviour
     {
       script = GetComponent<FlyRocket>();
       audioSource = GetComponent<AudioSource>();
+      rd = GetComponent<Rigidbody>();
     }
 
     void DisableMoviments() {
@@ -30,6 +33,9 @@ public class playerCollider : MonoBehaviour
     }
 
     void CrashRocket() {
+      if(!collisionsEnabled) return;
+      collisionsEnabled = false;
+      rd.constraints = RigidbodyConstraints.None;
       DisableMoviments();
 
       audioSource.Stop();
@@ -42,8 +48,8 @@ public class playerCollider : MonoBehaviour
     }
 
     void onFinish() {
-      if (!script.flightEnabled) return;
-  
+      if (!script.flightEnabled || !collisionsEnabled) return;
+      collisionsEnabled = false;
       script.flightEnabled = false;
       won = true;
       DisableMoviments();
