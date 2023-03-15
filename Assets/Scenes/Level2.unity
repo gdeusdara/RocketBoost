@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   period: 2
-  movementFactor: 0
+  movementFactor: 0.01
   movementVector: {x: 8, y: 0, z: 0}
 --- !u!1 &1206413997
 GameObject:
